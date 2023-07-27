@@ -8,7 +8,7 @@ class Operation:
         self.currency = currency
 
     def __repr__(self):
-        return f'Operation ({self.the_date}, "{self.descr}", \
+        return f'Operation("{self.the_date}", "{self.descr}", \
 "{self.from_}", "{self.to_}", "{self.amount}", "{self.currency}")'
 
     def print_1st_line(self):

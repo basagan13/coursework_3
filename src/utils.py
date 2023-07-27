@@ -7,6 +7,7 @@ def load_data_from_json(filename):
     with open(filename, encoding='utf-8') as file:
         return json.loads(file.read())
 
+
 def make_list_of_class_objects(data_):
     list_of_class_objects = []
     for item in data_:
