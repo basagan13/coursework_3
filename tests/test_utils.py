@@ -1,15 +1,23 @@
-from src.utils import make_list_of_class_objects, sort_list, print_details
+import datetime
+from src.utils import load_data_from_json, make_list_of_class_objects, sort_list
 from src.class_operation import Operation
 
 
+def test_load_data_from_json(json_file):
+    assert type(load_data_from_json(json_file)) == list
+
+
 def test_make_list_of_class_objects(data_for_test):
-    assert make_list_of_class_objects(data_for_test) == \
-           [Operation("2022-05-12", "descr1", "from1", "to1", "summa1", "cur1"),
-            Operation("2023-03-05", "descr2", "from2", "to2", "summa2", "cur2")]
+    assert type(make_list_of_class_objects(data_for_test)) == list
+    assert len(make_list_of_class_objects(data_for_test)) == 3
+    assert make_list_of_class_objects(data_for_test)[0].from_ == 'from1'
+    assert make_list_of_class_objects(data_for_test)[2].from_ == ''
+    assert make_list_of_class_objects(data_for_test)[0].the_date == \
+           datetime.date(2022, 5, 12)
 
 
-def test_sort_list(opers):
-    assert sort_list(opers) == \
-           [Operation("2023-03-05", "descr2", "from2", "to2", "summa2", "cur2"),
-            Operation("2022-05-12", "descr1", "from1", "to1", "summa1", "cur1"),
-            Operation("2019-03-05", "descr3", "from3", "to3", "summa3", "cur3")]
+def test_sort_list(list_for_test):
+    assert type(sort_list(list_for_test)) == list
+    assert len(sort_list(list_for_test)) == 4
+    assert sort_list(list_for_test)[0].descr == 'descr2'
+    assert sort_list(list_for_test)[2].descr == 'descr3'
