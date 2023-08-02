@@ -15,7 +15,7 @@ def make_list_of_class_objects(data_):
             if item['state'] == 'EXECUTED':
                 date_of = date.fromisoformat(item['date'][:10])
                 description = item['description']
-                origin = item['from'] if 'from' in item.keys() else []
+                origin = item['from'] if 'from' in item.keys() else ''
                 destination = item['to']
                 summa = item['operationAmount']['amount']
                 cur = item['operationAmount']['currency']['name']
@@ -29,16 +29,13 @@ def make_list_of_class_objects(data_):
 
 
 def sort_list(the_list):
-    sorted_list = sorted(the_list, key=lambda operation:operation.the_date, reverse=True)
+    sorted_list = sorted(the_list, key=lambda operation: operation.the_date,
+                         reverse=True)
     return sorted_list
 
 
-def print_details(the_list):
-    for operation in the_list:
-        print(operation.print_1st_line())
-        if operation.from_:
-            print(f'{operation.print_from()} -> {operation.print_to()}')
-        else:
-            print(f'{operation.print_to()}')
-        print(f'{operation.amount} {operation.currency}')
-        print()
+def print_details(operate):
+    if operate.from_:
+        print(f'{operate.print_from()} -> {operate.print_to()}')
+    else:
+        print(f'{operate.print_to()}')
