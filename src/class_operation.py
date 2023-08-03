@@ -1,5 +1,14 @@
 class Operation:
     def __init__(self, the_date, descr, from_, to_, amount, currency):
+        '''
+        Иициаоизация класса
+        :param the_date: дата операции
+        :param descr: описание операции
+        :param from_: откуда перевод
+        :param to_: куда перевод
+        :param amount: баланс карты/счета
+        :param currency: валюта
+        '''
         self.the_date = the_date
         self.descr = descr
         self.from_ = from_ if from_ else ""
@@ -12,10 +21,16 @@ class Operation:
 "{self.from_}", "{self.to_}", "{self.amount}", "{self.currency}")'
 
     def print_1st_line(self):
+        '''
+        Выводит на экран первую строку с датой и описанием операции
+        '''
         the_date = self.the_date.strftime('%d.%m.%Y')
         return f'{the_date} {self.descr}'
 
     def print_to(self):
+        '''
+        Выводит на экран информацию, куда перевод
+        '''
         account_list = self.to_.split()
 
         account_num = account_list[-1]
@@ -26,6 +41,9 @@ class Operation:
         return ' '.join(new_account_list)
 
     def print_from(self):
+        '''
+        Выводит на экран информацию, откуда перевод
+        '''
         list_from = self.from_.split()
         num_from = list_from[-1]
         if len(num_from) == 16:

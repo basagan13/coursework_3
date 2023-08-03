@@ -4,11 +4,17 @@ from src.class_operation import Operation
 
 
 def load_data_from_json(filename):
+    '''
+    Загружает данные из json-файла
+    '''
     with open(filename, encoding='utf-8') as file:
         return json.loads(file.read())
 
 
 def make_list_of_class_objects(data_):
+    '''
+    Создает список экземпляров класса Operation из загруженных данных
+    '''
     list_of_class_objects = []
     for item in data_:
         if 'state' in item.keys():
@@ -29,12 +35,18 @@ def make_list_of_class_objects(data_):
 
 
 def sort_list(the_list):
+    '''
+    Сортирует список операций по дате, выводя более поздние выше
+    '''
     sorted_list = sorted(the_list, key=lambda operation: operation.the_date,
                          reverse=True)
     return sorted_list
 
 
 def print_details(operate):
+    '''
+    Выводит на экран информацию
+    '''
     if operate.from_:
         print(f'{operate.print_from()} -> {operate.print_to()}')
     else:
